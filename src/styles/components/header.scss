@@ -1,0 +1,26 @@
+header {
+    padding: 20px 50px;
+    background-color: #517521;
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .link {
+            gap: 20px;
+            display: flex;
+            a {
+                text-decoration: none;
+                color: white;
+            }
+            .active {
+                text-decoration: underline;
+            }
+        }
+    }
+}
