@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const employeeSlice = createSlice({
     name: "employees",
-    initialState: null,
+    initialState: {
+        employees: [],
+    },
     reducers: {
         addEmployee: (state, action) => {
-            localStorage.setItem("employee", JSON.stringify(action.payload));
+            state.employees.push(action.payload);
         },
     },
 });
