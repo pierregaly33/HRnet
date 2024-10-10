@@ -5,9 +5,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../redux/employeeSlice";
+import ConfirmationCreate from "../components/confirmationCreate";
 import Select from "react-select";
 
 function CreateEmployee() {
+    document.title = "HRnet";
+
+    const regexName = /^[a-zA-ZàâäéèêëïîôöùûüçÀÂÄÉÈÊËÏÎÔÖÙÛÜÇ\s'-]+$/;
+    const regexDate = /^(19[0-9]{2}|200[0-9]|201[0-9]|2020)-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+    const regexStreet = /^[0-9]+\s[A-Za-zÀ-ÿ\s-]+(?:\s[A-Za-zÀ-ÿ\s-]+)*$/;
+
+    const dispatch = useDispatch();
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [birthdate, setBirthdate] = useState(undefined);
@@ -18,8 +27,15 @@ function CreateEmployee() {
     const [department, setDepartment] = useState(null);
     const [state, setState] = useState(null);
 
-    const dispatch = useDispatch();
+    //Véfication si l'input est rempli avec les bonnes informations
+    const testFirstname = regexName.test(firstName);
+    const testLastname = regexName.test(lastName);
+    const testBirthdate = regexDate.test(birthdate);
+    const testStartDate = regexDate.test(startDate);
+    const testStreet = regexStreet.test(street);
+    const testCity = regexName.test(city);
 
+    //Efface les données entré dans le formulaire
     const clearForm = () => {
         setFirstName("");
         setLastName("");
@@ -32,9 +48,18 @@ function CreateEmployee() {
         setState(null);
     };
 
+    //Vérification si le formulaire est bien compléter
     const isCompleted = () => {
         return (
-            firstName && lastName && birthdate && startDate && street && city && zipCode && department && state !== ""
+            testFirstname &&
+            testLastname &&
+            testBirthdate &&
+            testStartDate &&
+            testStreet &&
+            testCity &&
+            zipCode &&
+            department &&
+            state !== ""
         );
     };
 
@@ -54,10 +79,11 @@ function CreateEmployee() {
         if (isCompleted()) {
             dispatch(addEmployee(data));
             clearForm();
+            handleOpen();
         }
     };
 
-    const handleDateChange = (e) => {
+    const handleBirthdayDate = (e) => {
         setBirthdate(e.target.value);
     };
 
@@ -65,10 +91,16 @@ function CreateEmployee() {
         setStartDate(e.target.value);
     };
 
+    let [isVisible, setIsVisible] = useState(false);
+
+    const handleOpen = () => {
+        setIsVisible(true);
+    };
     return (
         <>
             <div>
                 <Home />
+                {isVisible && <ConfirmationCreate />}
                 <div className="container">
                     <h2>Create Employee</h2>
                     <form action="#" id="create-employee">
@@ -99,7 +131,7 @@ function CreateEmployee() {
                                     type="date"
                                     id="birthday"
                                     value={birthdate}
-                                    onChange={handleDateChange}
+                                    onChange={handleBirthdayDate}
                                     required
                                 />
 
@@ -131,6 +163,7 @@ function CreateEmployee() {
                                     value={street}
                                     type="text"
                                     id="street"
+                                    placeholder="ex: 48 rue du berger"
                                     onChange={(e) => {
                                         setStreet(e.target.value);
                                     }}

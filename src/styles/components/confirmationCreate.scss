@@ -1,0 +1,31 @@
+.container-confirmation {
+    position: absolute;
+    height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    flex-direction: column;
+    gap: 25px;
+    .confirmation {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(81, 117, 33, 0.7);
+        border-radius: 20px;
+        padding: 50px;
+        text-align: center;
+        color: white;
+    }
+    .button-close {
+        background-color: rgba(81, 117, 33, 0.7);
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        color: white;
+        &:hover {
+            background-color: #517521;
+            color: white;
+        }
+    }
+}
