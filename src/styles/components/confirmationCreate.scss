@@ -11,20 +11,20 @@
     .confirmation {
         display: flex;
         flex-direction: column;
-        background-color: rgba(81, 117, 33, 0.7);
+        background-color: $main-color-transparent;
         border-radius: 20px;
         padding: 50px;
         text-align: center;
         color: white;
     }
     .button-close {
-        background-color: rgba(81, 117, 33, 0.7);
+        background-color: $main-color-transparent;
         padding: 10px 20px;
         border-radius: 20px;
         cursor: pointer;
         color: white;
         &:hover {
-            background-color: #517521;
+            background-color: $main-color;
             color: white;
         }
     }

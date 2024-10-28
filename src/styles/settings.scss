@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #e6e6e6;
+    background-color: $secondary-color;
     display: flex;
     flex-direction: column;
 }
@@ -64,7 +64,7 @@ label {
             padding: 7px 35px;
             background-color: #FFFF;
             &:hover {
-                background-color: #42C6FC;
+                background-color: $main-color;
                 color: white;
             }
         }

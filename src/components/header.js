@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import imageLogo from "../assets/images/wealth.webp";
 
 function header() {
     return (
@@ -7,6 +8,7 @@ function header() {
             <header>
                 <nav>
                     <div className="title">
+                        <img className="logo" src={imageLogo} alt="logo HRnet" />
                         <h1>HRnet</h1>
                     </div>
                     <div className="link">
