@@ -96,17 +96,18 @@ function CreateEmployee() {
     const handleOpen = () => {
         setIsVisible(true);
     };
+
     return (
         <>
             <div>
                 <Home />
-                {isVisible && <ConfirmationCreate />}
+                {isVisible && <ConfirmationCreate onClose={() => setIsVisible(false)} />}
                 <div className="container">
-                    <h2>Create Employee</h2>
                     <form action="#" id="create-employee">
+                        <h2 className="title-create">Create Employee</h2>
                         <div className="information-address-employee">
                             <div className="information-employee">
-                                <label htmlFor="first-name">First Name</label>
+                                <label htmlFor="first-name">First Name :</label>
                                 <input
                                     value={firstName}
                                     type="text"
@@ -116,7 +117,7 @@ function CreateEmployee() {
                                     }}
                                 />
 
-                                <label htmlFor="last-name">Last Name</label>
+                                <label htmlFor="last-name">Last Name :</label>
                                 <input
                                     value={lastName}
                                     type="text"
@@ -126,7 +127,7 @@ function CreateEmployee() {
                                     }}
                                 />
 
-                                <label htmlFor="date-of-birth">Date of Birth</label>
+                                <label htmlFor="date-of-birth">Date of Birth :</label>
                                 <input
                                     type="date"
                                     id="birthday"
@@ -135,7 +136,7 @@ function CreateEmployee() {
                                     required
                                 />
 
-                                <label htmlFor="start-date">Start Date</label>
+                                <label htmlFor="start-date">Start Date :</label>
                                 <input
                                     type="date"
                                     id="start-date"
@@ -144,7 +145,7 @@ function CreateEmployee() {
                                     required
                                 />
 
-                                <label htmlFor="department">Department</label>
+                                <label htmlFor="department">Department :</label>
                                 <Select
                                     name="department"
                                     id="department"
@@ -158,7 +159,7 @@ function CreateEmployee() {
                             <fieldset className="address">
                                 <legend>Address</legend>
 
-                                <label htmlFor="street">Street</label>
+                                <label htmlFor="street">Street :</label>
                                 <input
                                     value={street}
                                     type="text"
@@ -169,10 +170,10 @@ function CreateEmployee() {
                                     }}
                                 />
 
-                                <label htmlFor="city">City</label>
+                                <label htmlFor="city">City :</label>
                                 <input value={city} type="text" id="city" onChange={(e) => setCity(e.target.value)} />
 
-                                <label htmlFor="state">State</label>
+                                <label htmlFor="state">State :</label>
                                 <Select
                                     name="state"
                                     id="state"
@@ -182,7 +183,7 @@ function CreateEmployee() {
                                     onChange={(e) => setState(e)}
                                 />
 
-                                <label htmlFor="zip-code">Zip Code</label>
+                                <label htmlFor="zip-code">Zip Code :</label>
                                 <input
                                     value={zipCode}
                                     type="text"

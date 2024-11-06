@@ -1,6 +1,6 @@
 import Header from "../components/header";
 import { columns } from "../data/columns";
-import Table from "../components/table";
+import Table from "../components/Table";
 
 function EmployeeList() {
     const getEmployees = JSON.parse(localStorage.getItem("employees"));
