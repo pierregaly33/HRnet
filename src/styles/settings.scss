@@ -96,12 +96,10 @@ label {
             border: 1px solid;
             padding: 7px 35px;
             background-color: #FFFF;
-            transition: transform 0.3s ease-in;
 
             &:hover {
                 background-color: $main-color;
                 color: white;
-                transform: scale(1.15);
             }
         }
     }
