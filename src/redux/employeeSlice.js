@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const loadEmloyees = () => {
+const loadEmployees = () => {
     const employeesSaved = localStorage.getItem("employees");
     return employeesSaved ? JSON.parse(employeesSaved) : [];
 };
@@ -7,7 +7,7 @@ const loadEmloyees = () => {
 export const employeeSlice = createSlice({
     name: "employees",
     initialState: {
-        employees: loadEmloyees(),
+        employees: loadEmployees(),
     },
     reducers: {
         addEmployee: (state, action) => {

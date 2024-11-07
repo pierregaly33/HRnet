@@ -1,28 +1,17 @@
-import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import { useDispatch } from "react-redux";
-import { deleteEmployee } from "../redux/employeeSlice";
 
-function Table({ columns, data }) {
-    const dispatch = useDispatch();
-
-    const [tableData, setTableData] = useState(data);
-
-    const handleDelete = (index) => {
-        const updatedData = tableData.filter((row, i) => i !== index);
-        setTableData(updatedData);
-
-        localStorage.setItem("employees", JSON.stringify(updatedData));
-
-        dispatch(deleteEmployee(index));
-    };
-
+function Table({ columns, data, modalDelete }) {
     const columnsWithDelete = [
         ...columns,
         {
             name: "Actions",
             cell: (row, index) => (
-                <button className="button-delete" onClick={() => handleDelete(index)}>
+                <button
+                    className="button-delete"
+                    onClick={() => {
+                        modalDelete(index);
+                    }}
+                >
                     Supprimer
                 </button>
             ),
@@ -30,7 +19,7 @@ function Table({ columns, data }) {
         },
     ];
 
-    return <DataTable columns={columnsWithDelete} data={tableData} striped highlightOnHover pagination />;
+    return <DataTable columns={columnsWithDelete} data={data} striped highlightOnHover pagination />;
 }
 
 export default Table;
