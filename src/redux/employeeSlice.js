@@ -16,6 +16,7 @@ export const employeeSlice = createSlice({
         },
         deleteEmployee: (state, action) => {
             state.employees.splice(action.payload, 1);
+            localStorage.setItem("employees", JSON.stringify(state.employees));
         },
     },
 });

@@ -17,15 +17,32 @@
         text-align: center;
         color: white;
     }
+
     .button-close {
         background-color: $main-color-transparent;
         padding: 10px 20px;
         border-radius: 20px;
         cursor: pointer;
         color: white;
+        transition: transform ease-in 0.2s;
+
         &:hover {
             background-color: $main-color;
-            color: white;
+            transform: scale(1.1);
+        }
+    }
+
+    .button-confirmation {
+        background-color: $main-color-transparent;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        color: white;
+        transition: transform ease-in 0.2s;
+
+        &:hover {
+            background-color: $main-color;
+            transform: scale(1.1);
         }
     }
 }

@@ -4,8 +4,8 @@ function Table({ columns, data, modalDelete }) {
     const columnsWithDelete = [
         ...columns,
         {
-            name: "Actions",
-            cell: (row, index) => (
+            name: "Delete",
+            cell: (index) => (
                 <button
                     className="button-delete"
                     onClick={() => {

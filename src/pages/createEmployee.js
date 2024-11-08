@@ -80,6 +80,8 @@ function CreateEmployee() {
             dispatch(addEmployee(data));
             clearForm();
             handleOpen();
+        } else {
+            alert("Veuillez vérifier les informations");
         }
     };
 
