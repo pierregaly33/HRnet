@@ -19,6 +19,13 @@ input {
 
 }
 
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+}
+
 #department {
     width: 100%;
 }

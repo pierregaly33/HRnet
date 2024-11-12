@@ -19,23 +19,126 @@ function CreateEmployee() {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [birthdate, setBirthdate] = useState(undefined);
-    const [startDate, setStartDate] = useState(undefined);
+    const [birthdate, setBirthdate] = useState("");
+    const [startDate, setStartDate] = useState("");
     const [street, setStreet] = useState("");
     const [city, setCity] = useState("");
     const [zipCode, setZipCode] = useState("");
     const [department, setDepartment] = useState(null);
     const [state, setState] = useState(null);
 
-    //Véfication si l'input est rempli avec les bonnes informations
-    const testFirstname = regexName.test(firstName);
-    const testLastname = regexName.test(lastName);
-    const testBirthdate = regexDate.test(birthdate);
-    const testStartDate = regexDate.test(startDate);
-    const testStreet = regexStreet.test(street);
-    const testCity = regexName.test(city);
+    // États pour chaque message d'erreur
+    const [errorFirstName, setErrorFirstName] = useState("");
+    const [errorLastName, setErrorLastName] = useState("");
+    const [errorBirthdate, setErrorBirthdate] = useState("");
+    const [errorStartDate, setErrorStartDate] = useState("");
+    const [errorStreet, setErrorStreet] = useState("");
+    const [errorCity, setErrorCity] = useState("");
+    const [errorZipCode, setErrorZipCode] = useState("");
+    const [errorDepartment, setErrorDepartment] = useState("");
+    const [errorState, setErrorState] = useState("");
 
-    //Efface les données entré dans le formulaire
+    // Vérification des champs du formulaire
+    const validateForm = () => {
+        let isValid = true;
+
+        if (!regexName.test(firstName)) {
+            setErrorFirstName("Le prénom n'est pas valide.");
+            isValid = false;
+        } else {
+            setErrorFirstName("");
+        }
+
+        if (!regexName.test(lastName)) {
+            setErrorLastName("Le nom de famille n'est pas valide.");
+            isValid = false;
+        } else {
+            setErrorLastName("");
+        }
+
+        if (!regexDate.test(birthdate)) {
+            setErrorBirthdate("La date de naissance n'est pas valide.");
+            isValid = false;
+        } else {
+            setErrorBirthdate("");
+        }
+
+        if (!regexDate.test(startDate)) {
+            setErrorStartDate("La date de début n'est pas valide.");
+            isValid = false;
+        } else {
+            setErrorStartDate("");
+        }
+
+        if (!regexStreet.test(street)) {
+            setErrorStreet("L'adresse (rue) n'est pas valide.");
+            isValid = false;
+        } else {
+            setErrorStreet("");
+        }
+
+        if (!regexName.test(city)) {
+            setErrorCity("La ville n'est pas valide.");
+            isValid = false;
+        } else {
+            setErrorCity("");
+        }
+
+        if (!zipCode) {
+            setErrorZipCode("Le Zip code est requis.");
+            isValid = false;
+        } else {
+            setErrorZipCode("");
+        }
+
+        if (!department) {
+            setErrorDepartment("Le département est requis.");
+            isValid = false;
+        } else {
+            setErrorDepartment("");
+        }
+
+        if (!state) {
+            setErrorState("L'état est requis.");
+            isValid = false;
+        } else {
+            setErrorState("");
+        }
+
+        return isValid;
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        if (validateForm()) {
+            let data = {
+                firstName: firstName,
+                lastName: lastName,
+                DateBirthday: birthdate,
+                StartDate: startDate,
+                Street: street,
+                City: city,
+                ZipCode: zipCode,
+                Departement: department ? department.label : "",
+                State: state ? state.label : "",
+            };
+            dispatch(addEmployee(data));
+            clearForm();
+            handleOpen();
+        } else {
+            alert("Veuillez vérifier les informations.");
+        }
+    };
+
+    const handleBirthdayDate = (e) => {
+        setBirthdate(e.target.value);
+    };
+
+    const handleStartDate = (e) => {
+        setStartDate(e.target.value);
+    };
+
     const clearForm = () => {
         setFirstName("");
         setLastName("");
@@ -46,51 +149,6 @@ function CreateEmployee() {
         setZipCode("");
         setDepartment(null);
         setState(null);
-    };
-
-    //Vérification si le formulaire est bien compléter
-    const isCompleted = () => {
-        return (
-            testFirstname &&
-            testLastname &&
-            testBirthdate &&
-            testStartDate &&
-            testStreet &&
-            testCity &&
-            zipCode &&
-            department &&
-            state !== ""
-        );
-    };
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        let data = {
-            firstName: firstName,
-            lastName: lastName,
-            DateBirthday: birthdate,
-            StartDate: startDate,
-            Street: street,
-            City: city,
-            ZipCode: zipCode,
-            Departement: department ? department.label : "",
-            State: state ? state.label : "",
-        };
-        if (isCompleted()) {
-            dispatch(addEmployee(data));
-            clearForm();
-            handleOpen();
-        } else {
-            alert("Veuillez vérifier les informations");
-        }
-    };
-
-    const handleBirthdayDate = (e) => {
-        setBirthdate(e.target.value);
-    };
-
-    const handleStartDate = (e) => {
-        setStartDate(e.target.value);
     };
 
     let [isVisible, setIsVisible] = useState(false);
@@ -114,38 +172,26 @@ function CreateEmployee() {
                                     value={firstName}
                                     type="text"
                                     id="first-name"
-                                    onChange={(e) => {
-                                        setFirstName(e.target.value);
-                                    }}
+                                    onChange={(e) => setFirstName(e.target.value)}
                                 />
+                                {errorFirstName && <span className="error-message">{errorFirstName}</span>}
 
                                 <label htmlFor="last-name">Last Name :</label>
                                 <input
                                     value={lastName}
                                     type="text"
                                     id="last-name"
-                                    onChange={(e) => {
-                                        setLastName(e.target.value);
-                                    }}
+                                    onChange={(e) => setLastName(e.target.value)}
                                 />
+                                {errorLastName && <span className="error-message">{errorLastName}</span>}
 
                                 <label htmlFor="date-of-birth">Date of Birth :</label>
-                                <input
-                                    type="date"
-                                    id="birthday"
-                                    value={birthdate}
-                                    onChange={handleBirthdayDate}
-                                    required
-                                />
+                                <input type="date" id="birthday" value={birthdate} onChange={handleBirthdayDate} />
+                                {errorBirthdate && <span className="error-message">{errorBirthdate}</span>}
 
                                 <label htmlFor="start-date">Start Date :</label>
-                                <input
-                                    type="date"
-                                    id="start-date"
-                                    value={startDate}
-                                    onChange={handleStartDate}
-                                    required
-                                />
+                                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} />
+                                {errorStartDate && <span className="error-message">{errorStartDate}</span>}
 
                                 <label htmlFor="department">Department :</label>
                                 <Select
@@ -156,6 +202,7 @@ function CreateEmployee() {
                                     value={department || null}
                                     onChange={(e) => setDepartment(e)}
                                 />
+                                {errorDepartment && <span className="error-message">{errorDepartment}</span>}
                             </div>
 
                             <fieldset className="address">
@@ -167,13 +214,13 @@ function CreateEmployee() {
                                     type="text"
                                     id="street"
                                     placeholder="ex: 48 rue du berger"
-                                    onChange={(e) => {
-                                        setStreet(e.target.value);
-                                    }}
+                                    onChange={(e) => setStreet(e.target.value)}
                                 />
+                                {errorStreet && <span className="error-message">{errorStreet}</span>}
 
                                 <label htmlFor="city">City :</label>
                                 <input value={city} type="text" id="city" onChange={(e) => setCity(e.target.value)} />
+                                {errorCity && <span className="error-message">{errorCity}</span>}
 
                                 <label htmlFor="state">State :</label>
                                 <Select
@@ -184,6 +231,7 @@ function CreateEmployee() {
                                     value={state || null}
                                     onChange={(e) => setState(e)}
                                 />
+                                {errorState && <span className="error-message">{errorState}</span>}
 
                                 <label htmlFor="zip-code">Zip Code :</label>
                                 <input
@@ -192,6 +240,7 @@ function CreateEmployee() {
                                     id="zip-code"
                                     onChange={(e) => setZipCode(e.target.value)}
                                 />
+                                {errorZipCode && <span className="error-message">{errorZipCode}</span>}
                             </fieldset>
                         </div>
 
