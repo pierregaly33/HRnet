@@ -5,8 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../redux/employeeSlice";
-import ConfirmationCreate from "../components/confirmationCreate";
 import Select from "react-select";
+import { ConfirmationModal } from "modal-p14-galy-pierre";
 
 function CreateEmployee() {
     document.title = "HRnet";
@@ -161,7 +161,13 @@ function CreateEmployee() {
         <>
             <div>
                 <Home />
-                {isVisible && <ConfirmationCreate onClose={() => setIsVisible(false)} />}
+                {isVisible && (
+                    <ConfirmationModal
+                        onClose={() => setIsVisible(false)}
+                        isOpen={isVisible}
+                        message={"Utilisateur créé"}
+                    />
+                )}
                 <div className="container">
                     <form action="#" id="create-employee">
                         <h2 className="title-create">Create Employee</h2>
