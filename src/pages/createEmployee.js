@@ -179,6 +179,7 @@ function CreateEmployee() {
                                     type="text"
                                     id="first-name"
                                     onChange={(e) => setFirstName(e.target.value)}
+                                    className={errorFirstName ? "input-error" : ""}
                                 />
                                 {errorFirstName && <span className="error-message">{errorFirstName}</span>}
 
@@ -188,15 +189,28 @@ function CreateEmployee() {
                                     type="text"
                                     id="last-name"
                                     onChange={(e) => setLastName(e.target.value)}
+                                    className={errorLastName ? "input-error" : ""}
                                 />
                                 {errorLastName && <span className="error-message">{errorLastName}</span>}
 
                                 <label htmlFor="date-of-birth">Date of Birth :</label>
-                                <input type="date" id="birthday" value={birthdate} onChange={handleBirthdayDate} />
+                                <input
+                                    type="date"
+                                    id="birthday"
+                                    value={birthdate}
+                                    onChange={handleBirthdayDate}
+                                    className={errorBirthdate ? "input-error" : ""}
+                                />
                                 {errorBirthdate && <span className="error-message">{errorBirthdate}</span>}
 
                                 <label htmlFor="start-date">Start Date :</label>
-                                <input type="date" id="start-date" value={startDate} onChange={handleStartDate} />
+                                <input
+                                    type="date"
+                                    id="start-date"
+                                    value={startDate}
+                                    onChange={handleStartDate}
+                                    className={errorStartDate ? "input-error" : ""}
+                                />
                                 {errorStartDate && <span className="error-message">{errorStartDate}</span>}
 
                                 <label htmlFor="department">Department :</label>
@@ -207,6 +221,7 @@ function CreateEmployee() {
                                     options={departmentsOptions}
                                     value={department || null}
                                     onChange={(e) => setDepartment(e)}
+                                    className={errorDepartment ? "input-error" : ""}
                                 />
                                 {errorDepartment && <span className="error-message">{errorDepartment}</span>}
                             </div>
@@ -221,6 +236,7 @@ function CreateEmployee() {
                                     id="street"
                                     placeholder="ex: 48 rue du berger"
                                     onChange={(e) => setStreet(e.target.value)}
+                                    className={errorStreet ? "input-error" : ""}
                                 />
                                 {errorStreet && <span className="error-message">{errorStreet}</span>}
 
@@ -236,6 +252,7 @@ function CreateEmployee() {
                                     options={statesOptions}
                                     value={state || null}
                                     onChange={(e) => setState(e)}
+                                    className={errorState ? "input-error" : ""}
                                 />
                                 {errorState && <span className="error-message">{errorState}</span>}
 
@@ -245,6 +262,7 @@ function CreateEmployee() {
                                     type="text"
                                     id="zip-code"
                                     onChange={(e) => setZipCode(e.target.value)}
+                                    className={errorZipCode ? "input-error" : ""}
                                 />
                                 {errorZipCode && <span className="error-message">{errorZipCode}</span>}
                             </fieldset>

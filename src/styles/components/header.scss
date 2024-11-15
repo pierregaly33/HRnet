@@ -1,6 +1,7 @@
 header {
     padding: 20px 50px;
-    background-color: $main-color;
+    background: linear-gradient(to top, $main-color, #87B539);
+    border-bottom: 1px solid;
     nav {
         display: flex;
         align-items: center;

@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: $font;
 }
 
 
@@ -9,14 +10,34 @@ body {
     background-color: $secondary-color;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to top, $main-color, #87B539);
+    height: 100vh;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    font-family: $font;
+    font-weight: 500;
 }
 
 input {
-    border-radius: 10px;
-    border: 1px solid;
+    border: none;
+    border-bottom: 1px solid;
     padding: 5px;
     width: 99%;
+    font-family: $font;
+    font-weight: 200;
 
+    &:focus {
+        outline: none;
+    }
+}
+
+
+
+.input-error {
+    border-bottom: 1px solid red;
 }
 
 .error-message {
@@ -59,12 +80,6 @@ select {
     gap: 60px;
 }
 
-label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
-}
-
 .information-employee {
     width: 40%;
 }
@@ -73,7 +88,16 @@ label {
     margin-top: 10px;
     width: 41%;
     border: 2px solid $main-color;
+    position: relative;
+    background: linear-gradient(to bottom, $main-color, #87B539);
+    padding: 0 20px;
+    
+    legend {
+        position: absolute;
+        top: -20px;
+    }
 }
+
 
 #create-employee {
     display: flex;
@@ -88,6 +112,8 @@ label {
 
     .title-create {
         text-align: center;
+        font-family: $font;
+        font-weight: 800;
     }
 
     .information-address-employee {
