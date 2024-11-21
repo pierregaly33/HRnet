@@ -10,7 +10,7 @@ body {
     background-color: $secondary-color;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to top, $main-color, #87B539);
+    background: #7AA332;
     height: 100vh;
 }
 
@@ -78,6 +78,9 @@ select {
     align-items: center;
     justify-content: center;
     gap: 60px;
+    .current-employees {
+        margin-top: 25px;
+    }
 }
 
 .information-employee {
@@ -89,7 +92,7 @@ select {
     width: 41%;
     border: 2px solid $main-color;
     position: relative;
-    background: linear-gradient(to bottom, $main-color, #87B539);
+    background: #7AA332;
     padding: 0 20px;
     
     legend {

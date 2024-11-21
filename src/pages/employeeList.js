@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { deleteEmployee } from "../redux/employeeSlice";
 import { useSelector } from "react-redux";
 import { ConfirmationModal } from "modal-p14-galy-pierre";
-import "modal-p14-galy-pierre/dist/index.css";
 // import { ExampleComponent } from "component-test";
 // import "component-test/dist/index.css";
 
@@ -40,7 +39,7 @@ function EmployeeList() {
                 />
             )}
             <div id="employee-div" className="container">
-                <h1>Current employees</h1>
+                <h1 className="current-employees">Current employees</h1>
                 <Table columns={columns} data={getEmployees} modalDelete={handleOpen} />
             </div>
         </>
