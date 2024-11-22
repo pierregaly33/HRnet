@@ -7,7 +7,6 @@
 
 
 body {
-    background-color: $secondary-color;
     display: flex;
     flex-direction: column;
     background: #7AA332;
@@ -112,6 +111,7 @@ select {
     row-gap: 25px;
     width: 50%;
     margin-top: 60px;
+    box-shadow: 0px 0px 20px 6px;
 
     .title-create {
         text-align: center;
