@@ -6,8 +6,6 @@ import { useDispatch } from "react-redux";
 import { deleteEmployee } from "../redux/employeeSlice";
 import { useSelector } from "react-redux";
 import { ConfirmationModal } from "modal-p14-galy-pierre";
-// import { ExampleComponent } from "component-test";
-// import "component-test/dist/index.css";
 
 function EmployeeList() {
     const getEmployees = useSelector((state) => state.employees.employees);
